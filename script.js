@@ -256,7 +256,7 @@ const switchCell = (a,b) =>{
 }
 
 
-const searchHorizontalMatch = () => {
+const searchVerticalMatch = () => {
 
     for(let i = 0; i < matrizSize; i++) {
   
@@ -265,7 +265,7 @@ const searchHorizontalMatch = () => {
             let previous; 
             let found=0;
             let times=3 
-            //console.log(row)
+            console.log(row)
         
         for(let j = 0; j < row.length; j++) {
                 
@@ -296,53 +296,55 @@ const searchHorizontalMatch = () => {
 
 }
 
-//searchHorizontalMatch()
+const searchHorizontalMatch = () => {
 
-const searchVerticalMatch = () => {
+    for(let i = 0; i < matrizSize; i++) {
+  
+            const row = document.querySelectorAll(`[data-y='${i}']`)
+            //const array = matrizSize[i]; 
+            let previous; 
+            let found=0;
+            let times=3 
+            console.log(row)
+        
+        for(let j = 0; j < row.length; j++) {
+                
+            if(row[j].innerText === previous) {
 
-    //const itemsPorArray = matriz[0].length; 
-  
-        for(let j = 0; j < matrizSize; j++) {      
-  
-            const column = document.querySelectorAll(`[data-y='${j}']`)
+            found++
 
-                let previous; 
-                let found=0;
-                const times=3
-                //console.log(column)
-            for(let i = 0; i < column.length; i++){
-  
-                    if(previous.innerText===column[j][i].innerText) {
-          
-                    found++
-          
-                    } else {
-                        found=1
-                    }
-          
-          
-                    if(found>=times){
+            } else {
+                found=1
+            }
+
+            if(found>=times){
                     
-                        //return true;
-                        console.log(true)
-                        
-                    } else {
-                        
-                        console.log(false)
-  
-                    }
-                      
-                    previous=column[j][i].innerText
-          }
-          
-   }
-  
-  }
+                //return true;
+                console.log(true)
+                
+            } else {
+
+                console.log(false)
+            }
+            
+            previous=row[j].innerText
+
+
+    }
+        
+ }
+
+}
+
+
+
+
+
   
 //   const searchMatches = () => {
 
-//     searchVerticalMatch(matrizFinder());
-//     searchHorizontalMatch(matrizFinder())
+//     searchVerticalMatch();
+//     searchHorizontalMatch()
   
 //   }
 
