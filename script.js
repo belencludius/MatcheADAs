@@ -242,28 +242,29 @@ const searchVerticalMatch = () => {
     for(let i = 0; i < matrizSize; i++) {
   
             const column = document.querySelectorAll(`[data-x='${i}']`)
-            //const array = matrizSize[i]; 
             let previous; 
             let found=0;
             let times=3 
-            //console.log(row)
+            let itemsFound; 
         
         for(let j = 0; j < column.length; j++) {
                 
             if(column[j].innerText === previous) {
 
             found++
-            let itemsFound = column[j];
+            itemsFound = itemsFound + column[j];
             console.log(itemsFound)
 
             } else {
                 found=1
+                itemsFound = column[j];
             }
 
             if(found>=times){
                     
                 //return true;
                 console.log(true)
+                
                 
             } else {
 
@@ -285,22 +286,23 @@ const searchHorizontalMatch = () => {
     for(let i = 0; i < matrizSize; i++) {
   
             const row = document.querySelectorAll(`[data-y='${i}']`)
-            //const array = matrizSize[i]; 
             let previous; 
             let found=0;
             let times=3 
-            //console.log(row)
+            let itemsFound; 
+
         
         for(let j = 0; j < row.length; j++) {
                 
             if(row[j].innerText === previous) {
 
             found++
-            let itemsFound = row[j];
+            itemsFound = itemsFound + row[j];
             console.log(itemsFound)
 
             } else {
                 found=1
+                itemsFound = row[j];
             }
 
             if(found>=times){
