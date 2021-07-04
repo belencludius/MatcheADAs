@@ -7,22 +7,6 @@ let emoji=['🐷', '🐶', '🐸', '🐮', '🐭', '🐱', ]
 let matrizSize;
 let itemSize;
 
-// // leer matriz
-// const matrizFinder = () => {  
-//   let matriz;
-//   matriz = new Array(matrizSize);
-//   for(let i = 0; i < matrizSize; i++) {
-//     matriz[i] = new Array(matrizSize)
-//   };
-//   for(let i = 0; i < matrizSize; i++) {
-//     for(let j = 0; j < matrizSize; j++) {
-//       matriz[i][j] = document.querySelector(`[data-x="${j}"][data-y="${i}"]`).innerText;
-//     }
-//   }
-//   console.log("+++matriz+++", matriz)
-//   return matriz;
-// }
-
 //DEVUELVE EMOJI SUELTO
 
 const randomItems =() => {
@@ -138,8 +122,7 @@ const selectLevel = () => {
             matrizSize=9
             itemSize=56
             generateGrid(matrizSize, itemSize);
-            searchHorizontalMatch()
-            searchVerticalMatch()
+            searchMatches();
             // setTimeout(() => {
             //     test()
             // }, 2000)
@@ -249,9 +232,7 @@ const switchCell = (a,b) =>{
     a.setAttribute('data-y', aux2DataY)
     b.setAttribute('data-y', aux1DataY)
    
-    searchHorizontalMatch()
-    searchVerticalMatch()
-   // searchMatches();
+    searchMatches();
 
 }
 
@@ -331,39 +312,35 @@ const searchHorizontalMatch = () => {
 
 
     }
-        
+
  }
 
 }
 
 
+  const searchMatches = () => {
+
+    searchVerticalMatch();
+    searchHorizontalMatch()
+
+}
 
 
 
-  
-//   const searchMatches = () => {
-
-//     searchVerticalMatch();
-//     searchHorizontalMatch()
-  
-//   }
+//  const test = ( ) => {
+//     for (let y=0; y<9; y++){
 
 
-
- const test = ( ) => {
-    for (let y=0; y<9; y++){
-
-
-        for(let x=0; x<9; x++){
+//         for(let x=0; x<9; x++){
     
-            const elem= document.querySelector(`[data-x='${x}'][data-y='${y}']`);
+//             const elem= document.querySelector(`[data-x='${x}'][data-y='${y}']`);
     
-            console.log(elem)
+//             console.log(elem)
     
     
-        }
+//         }
     
     
-    }
- }
+//     }
+//  }
   
