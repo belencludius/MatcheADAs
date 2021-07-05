@@ -246,10 +246,12 @@ const searchVerticalMatch = () => {
             let found=0;
             let times=3 
             let itemsFound; 
+
+            //column[i].classList.add('remove')
         
         for(let j = 0; j < column.length; j++) {
             
-            column[i].classList.add('remove')
+            column[j].classList.add('remove')
             
 
             if(column[j].innerText === previous) {
