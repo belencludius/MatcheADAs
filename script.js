@@ -80,10 +80,10 @@ const generateGrid =(matrizSize, itemSize)=> {
             celda.style.verticalAlign='center'
             celda.style.fontSize='30px';
 
-            celda.innerText=randomItems()
+           celda.innerText=randomItems()
 
-            celda.setAttribute('data-x', column);
-            celda.setAttribute('data-y', row);
+            celda.setAttribute('data-x', row);
+            celda.setAttribute('data-y', column);
 
             celda.addEventListener("click", clickItem);
 
@@ -123,9 +123,6 @@ const selectLevel = () => {
             itemSize=56
             generateGrid(matrizSize, itemSize);
             searchMatches();
-            // setTimeout(() => {
-            //     test()
-            // }, 2000)
             break;
             
         case 'medio':
@@ -204,7 +201,7 @@ const selectLevel = () => {
             return (aX === bX -1) || (aX === bX +1);
 
         }
-
+        
         return false;
 
     }
@@ -233,8 +230,9 @@ const switchCell = (a,b) =>{
     b.setAttribute('data-x', aux1DataX)
     a.setAttribute('data-y', aux2DataY)
     b.setAttribute('data-y', aux1DataY)
-   
-    searchMatches();
+    
+    searchMatches()
+
 
 }
 
@@ -243,37 +241,43 @@ const searchVerticalMatch = () => {
 
     for(let i = 0; i < matrizSize; i++) {
   
-            const column = document.querySelectorAll(`[data-x='${i}']`)
+            const column = document.querySelectorAll(`[data-y='${i}']`)
             let previous; 
             let found=0;
             let times=3 
             let itemsFound; 
         
         for(let j = 0; j < column.length; j++) {
-                
-            if(column[j].innerText === previous) {
-
-            found++
-            itemsFound = itemsFound + column[j].innerText;
-            console.log(itemsFound)
+            
+            column[i].classList.add('remove')
             
 
+            if(column[j].innerText === previous) {
+
+                found++
+                itemsFound = itemsFound + column[j].innerText;
+                console.log(itemsFound)
+                column[j].classList.add('remove')
+                
             } else {
                 found=1
                 itemsFound = column[j].innerText;
-            }
-
-            if(found>=times){
-                
-                //return true;
-                console.log(true)
-                
-                
-            } else {
-
-                console.log(false)
+                column[j].classList.remove('remove')
             }
             
+            
+
+            if(found>=times){
+                    
+                //return true;
+                console.log(true)
+                    
+                    
+            } else {
+                
+                console.log(false)
+            }
+                
             previous=column[j].innerText
             
 
@@ -288,23 +292,22 @@ const searchHorizontalMatch = () => {
 
     for(let i = 0; i < matrizSize; i++) {
   
-            const row = document.querySelectorAll(`[data-y='${i}']`)
+            const row = document.querySelectorAll(`[data-x='${i}']`)
             let previous; 
             let found=0;
             let times=3 
-            let itemsFound=[]; 
+            let itemsFound; 
 
-        
+      
         for(let j = 0; j < row.length; j++) {
-                
+          
+        
             if(row[j].innerText === previous) {
 
-            found++
-            itemsFound = itemsFound + row[j].innerText;
-            console.log(itemsFound)
-
+                found++
+                itemsFound = itemsFound + row[j].innerText;
+                console.log(itemsFound)
                 
-           
             } else {
                 found=1
                 itemsFound = row[j].innerText;
@@ -316,13 +319,14 @@ const searchHorizontalMatch = () => {
                     console.log(true)
                     
                     
-                } else {
+            } else {
 
                     console.log(false)
                 }
             
             previous=row[j].innerText
 
+            
 
     }
 
@@ -336,7 +340,29 @@ const searchHorizontalMatch = () => {
     searchVerticalMatch();
     searchHorizontalMatch()
 
+    setTimeout(() => {
+                remover()
+            }, 4000)
+
 }
+
+
+
+const remover = () => {
+
+let aRemover= document.getElementsByClassName('remove')
+
+    for (let item of aRemover){
+
+        item.innerText=null;
+
+    }
+
+}
+
+
+
+
 
 
 
