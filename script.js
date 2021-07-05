@@ -132,12 +132,14 @@ const selectLevel = () => {
             matrizSize=8
             itemSize=63
             generateGrid(matrizSize, itemSize);
+            searchMatches();
             break;
             
         case 'dificil':
             matrizSize=7
             itemSize=72
             generateGrid(matrizSize, itemSize);
+            searchMatches();
             break;
 
         default:
@@ -252,16 +254,17 @@ const searchVerticalMatch = () => {
             if(column[j].innerText === previous) {
 
             found++
-            itemsFound = itemsFound + column[j];
+            itemsFound = itemsFound + column[j].innerText;
             console.log(itemsFound)
+            
 
             } else {
                 found=1
-                itemsFound = column[j];
+                itemsFound = column[j].innerText;
             }
 
             if(found>=times){
-                    
+                
                 //return true;
                 console.log(true)
                 
@@ -289,7 +292,7 @@ const searchHorizontalMatch = () => {
             let previous; 
             let found=0;
             let times=3 
-            let itemsFound; 
+            let itemsFound=[]; 
 
         
         for(let j = 0; j < row.length; j++) {
@@ -297,23 +300,26 @@ const searchHorizontalMatch = () => {
             if(row[j].innerText === previous) {
 
             found++
-            itemsFound = itemsFound + row[j];
+            itemsFound = itemsFound + row[j].innerText;
             console.log(itemsFound)
 
+                
+           
             } else {
                 found=1
-                itemsFound = row[j];
+                itemsFound = row[j].innerText;
             }
-
-            if(found>=times){
+            
+           if(found>=times){
+                        
+            
+                    console.log(true)
                     
-                //return true;
-                console.log(true)
-                
-            } else {
+                    
+                } else {
 
-                console.log(false)
-            }
+                    console.log(false)
+                }
             
             previous=row[j].innerText
 
