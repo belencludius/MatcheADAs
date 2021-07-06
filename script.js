@@ -236,59 +236,112 @@ const switchCell = (a,b) =>{
 
 }
 
-
 const searchVerticalMatch = () => {
-
-    for(let i = 0; i < matrizSize; i++) {
-  
-            const column = document.querySelectorAll(`[data-y='${i}']`)
-            let previous; 
-            let found=0;
-            let times=3 
-            let itemsFound; 
-
-            //column[i].classList.add('remove')
-        
-        for(let j = 0; j < column.length; j++) {
-            
-            column[j].classList.add('remove')
-            
-
-            if(column[j].innerText === previous) {
-
-                found++
-                itemsFound = itemsFound + column[j].innerText;
-                console.log(itemsFound)
-                column[j].classList.add('remove')
-                
-            } else {
-                found=1
-                itemsFound = column[j].innerText;
-                column[j].classList.remove('remove')
-            }
-            
-            
-
-            if(found>=times){
-                    
-                //return true;
-                console.log(true)
-                    
-                    
-            } else {
-                
-                console.log(false)
-            }
-                
-            previous=column[j].innerText
-            
+  let isBlock = false;
+  let ejeY = 0;
+  let ejeX = 0;
+  let column;
+  let initialEjeY = 0;
+  let finalEjeY = 0;
 
 
+  // console.log('*** ejeX *** ', ejeX)
+  // console.log('*** matrizSize *** ', matrizSize)
+  // console.log('*** isBlock *** ', isBlock)
+  // console.log('*** ejeY < matrizSize *** ', ejeY < matrizSize)
+  while (ejeY < matrizSize && !isBlock) {
+    column = document.querySelectorAll(`[data-y='${ejeY}']`)
+    // console.log('*** column *** ', column)
+    initialCell = column[ejeX];
+    ejeX = 0;
+    while (ejeX < matrizSize - 3 && !isBlock) {
+      // console.log('*** column[ejeX] *** ', column[ejeX].innerText)
+      // console.log('*** column[ejeX + 1] *** ', column[ejeX + 1].innerText)
+      // console.log('*** column[ejeX + 2] *** ', column[ejeX + 2].innerText)
+      console.log('*** column[ejeX].innerText === column[ejeX + 1].innerText === column[ejeX + 2].innerText *** ', column[ejeX].innerText === column[ejeX + 1].innerText === column[ejeX + 2].innerText)
+      console.log('*** column[ejeX].innerText *** ', column[ejeX].innerText)
+      isBlock = (column[ejeX].innerText === column[ejeX + 1].innerText) && (column[ejeX].innerText === column[ejeX + 2].innerText)
+      if (isBlock) {
+        column[ejeX].classList.add('remove')
+        column[ejeX + 1].classList.add('remove')
+        column[ejeX + 2].classList.add('remove')
+        initialEjeX = ejeX;
+        ejeX = ejeX + 2;
+      } else {
+        ejeX++;
+      }
     }
-        
- }
+    if (isBlock) {
+      while (ejeX < matrizSize && column[ejeX].innerText === column[initialEjeX].innerText) {
+        column[ejeX].classList.add('remove')
+        ejeX++;
+      }
+      finalEjeX = ejeX
+    };
+    // console.log('*** ejeY *** ', ejeY)
+    // console.log('*** isBlock *** ', isBlock)
+    ejeY++;
+  }
+
+  console.log('*** isBlock *** ', isBlock)
+  // console.log('*** columna *** ', ejeX)
+  // console.log('*** columnaInicial *** ', initialEjeY)
+  // console.log('*** columnaFinal *** ', finalEjeY)
+  return isBlock;
 
 }
+
+// const searchVerticalMatch = () => {
+
+//     for(let i = 0; i < matrizSize; i++) {
+//       const column = document.querySelectorAll(`[data-y='${i}']`)
+//       let previous; 
+//       let found=0;
+//       let times=3 
+//       let itemsFound; 
+
+//       //column[i].classList.add('remove')
+        
+//         for(let j = 0; j < column.length; j++) {
+            
+//             // column[j].classList.add('remove')
+            
+
+//             if(column[j].innerText === previous) {
+//                 console.log("+++previus++++",previous)
+//                 found++
+//                 itemsFound = itemsFound + column[j].innerText;
+//                 console.log(itemsFound)
+//                 column[j].classList.add('remove')
+                
+//             } else {
+//                 found=1
+//                 itemsFound = column[j].innerText;
+//                 column[j].classList.remove('remove')
+//             }
+            
+            
+
+//             if(found>=times){
+                    
+//                 //return true;
+//                 console.log(true)
+                    
+                    
+//             } else {
+                
+//                 console.log(false)
+//             }
+                
+//             previous=column[j].innerText
+            
+
+
+//     }
+        
+//  }
+
+// }
 
 const searchHorizontalMatch = () => {
 
